@@ -41,6 +41,14 @@ int countPairs2(int *arr, int len, int value) {
   return counter;
 }
 
+int countPairs3(int *arr, int len, int value) {
+  int counter = 0;
+  for (int i = 0; i < len - 1; i++) {
+    counter += searchNum(arr[i + 1], len - i + 1, value - arr[i]);
+  }
+  return counter;
+}
+
 int searchNum(int *arr, int len, int num) {
   bool isCycle = false;
   int counter = 0;
@@ -71,12 +79,3 @@ int searchNum(int *arr, int len, int num) {
   }
   return counter;
 }
-
-int countPairs3(int *arr, int len, int value) {
-  int counter = 0;
-  for (int i = 0; i < len - 1; i++) {
-    counter += searchNum(arr[i + 1], len - i + 1, value - arr[i]);
-  }
-  return counter;
-}
-
