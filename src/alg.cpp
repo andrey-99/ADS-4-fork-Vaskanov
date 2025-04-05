@@ -42,7 +42,6 @@ int countPairs2(int *arr, int len, int value) {
 }
 
 int searchNum(int *arr, int len, int num) {
-  bool isCycle = false;
   int counter = 0;
   int left = 0;
   int right = len - 1;
@@ -56,10 +55,6 @@ int searchNum(int *arr, int len, int num) {
       while (arr[center - 1] == num && center - 1 >= 0) {
         counter++;
         center--;
-        isCycle = true;
-      }
-      if (!isCycle) {
-        counter++;
       }
       break;
     } else if (arr[center] > num) {
