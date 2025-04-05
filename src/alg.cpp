@@ -49,6 +49,7 @@ int searchNum(int *arr, int len, int num) {
   int center = left + (right - left) / 2;
   while (left <= right) {
     if (arr[center] == num) {
+      counter++;
       while (arr[center + 1] == num && center + 1 < len) {
         center++;
       }
@@ -57,7 +58,6 @@ int searchNum(int *arr, int len, int num) {
         center--;
         isCycle = true;
       }
-      сounter++;
       if (!isCycle) {
         counter++;
       }
