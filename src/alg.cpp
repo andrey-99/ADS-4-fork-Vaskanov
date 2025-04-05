@@ -75,7 +75,7 @@ int searchNum(int *arr, int len, int num) {
 int countPairs3(int *arr, int len, int value) {
   int counter = 0;
   for (int i = 0; i < len - 1; i++) {
-    counter += searchNum(arr[i + 1], len - i + 1; value - arr[i]);
+    counter += searchNum(arr[i + 1], len - i + 1, value - arr[i]);
   }
   return counter;
 }
