@@ -1,8 +1,8 @@
 // Copyright 2021 NNTU-CS
 int countPairs1(int *arr, int len, int value) {
   int counter = 0;
-  for (i = 0; i < len; i++) {
-    for (j = 0; j < len; j++) {
+  for (int i = 0; i < len - 1; i++) {
+    for (int j = i+1; j < len; j++) {
       if (arr[i] + arr[j] == value) {
         counter++;
       }
@@ -13,17 +13,24 @@ int countPairs1(int *arr, int len, int value) {
 int countPairs2(int *arr, int len, int value) {
   int counter = 0;
   int left = 0;
-  int right = len;
+  int right = len - 1;
   while (left < right) {
-    if (left + right == value) {
+    if (arr[left] + arr[right] == value) {
+      while (arr[left] == arr[left + 1] && arr[left] < len) {
+        counter++;
+      }
+      while (arr[right] == arr[right - 1] && arr[right] > 0) {
+        counter++;
+      }
       counter++;
       left++;
       right--;
-    } else if (left + right > value) {
+    } else if (arr[left] + arr[right] > value) {
       right--;
     } else {
       left++;
     }
+  }
   return counter;
 }
 int countPairs3(int *arr, int len, int value) {
