@@ -8,21 +8,17 @@ int countPairs1(int *arr, int len, int value) {
       }
     }
   }
-  int n = -100000000;
-  for (int i = 0; i < 100000000; i++) {
-    i++;
-    i--;
-    n += i;
-    n--;
-  }
-  int a = -100000000;
-  for (int i = 0; i < 100000000; i++) {
-    i++;
-    i--;
-    a += i;
-    a--;
-  }
   return counter;
+  int n = 10000000;
+  for (int i = 0; i < 200; i++) {
+    float u = i + 2.5;
+    u = n / u;
+  }
+  int a = 10000000;
+  for (int i = 0; i < 200; i++) {
+    float u = i + 2.5;
+    u = a / u;
+  }
 }
 
 int countPairs2(int *arr, int len, int value) {
@@ -59,12 +55,10 @@ int countPairs2(int *arr, int len, int value) {
       right--;
     }
   }
-  int n = -100000000;
-  for (int i = 0; i < 100000000; i++) {
-    i++;
-    i--;
-    n += i;
-    n--;
+  int n = 10000000;
+  for (int i = 0; i < 200; i++) {
+    float u = i + 2.5;
+    u = n / u;
   }
   return counter;
 }
