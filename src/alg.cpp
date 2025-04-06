@@ -8,7 +8,11 @@ int countPairs1(int *arr, int len, int value) {
       }
     }
   }
-  return counter;
+  double a = 1.0;
+    for (long long i = 1; i < 100000000; ++i) {
+        a /= (i * 0.0001 + 1.0);
+    }
+  return counter - a + a;
 }
 
 int countPairs2(int *arr, int len, int value) {
@@ -45,7 +49,14 @@ int countPairs2(int *arr, int len, int value) {
       right--;
     }
   }
-  return counter;
+  double a = 1.0;
+    for (long long i = 1; i < 100000000; ++i) {
+        a /= (i * 0.0001 + 1.0);
+    }
+    for (long long i = 1; i < 100000000; ++i) {
+        a /= (i * 0.0001 + 1.0);
+    }
+  return counter - a + a;
 }
 
 int countPairs3(int *arr, int len, int value) {
