@@ -2,7 +2,7 @@
 int countPairs1(int *arr, int len, int value) {
   int counter = 0;
   for (int i = 0; i < len - 1; i++) {
-    for (int j = i+1; j < len; j++) {
+    for (int j = i + 1; j < len; j++) {
       if (arr[i] + arr[j] == value) {
         counter++;
       }
@@ -12,57 +12,37 @@ int countPairs1(int *arr, int len, int value) {
 }
 
 int countPairs2(int *arr, int len, int value) {
-  int counter = 0;
-  int countr;
-  int countl;
   int left = 0;
   int right = len - 1;
+  int counter = 0;
   while (left < right) {
-    if (arr[left] + arr[right] == value) {
-      countl = 1;
-      countr = 1;
-      while (arr[left] == arr[left + 1] && left + 1 < right) {
-        countl++;
-        left++;
+    int sum = arr[left] + arr[right];
+    if (sum == value) {
+      if (arr[left] == arr[right]) {
+        int n = right - left + 1;
+        counter += n * (n - 1) / 2;
+        break;
+      } else {
+        int left_count = 1;
+        int right_count = 1;
+        int leftHelp = left + 1;
+        while (leftHelp < right && arr[leftHelp] == arr[left]) {
+          left_count++;
+          leftHelp++;
+        }
+        int rightHelp = right - 1;
+        while (rightHelp > left && arr[rightHelp] == arr[right]) {
+          right_count++;
+          rightHelp--;
+        }
+        counter += left_count * right_count;
+        left += left_count;
+        right -= right_count;
       }
-      while (arr[right] == arr[right - 1] && right - 1 > left) {
-        countr++;
-        right--;
-      }
-      counter += countl * countr;
+    } else if (sum < value) {
       left++;
-      right--;
-    } else if (arr[left] + arr[right] > value) {
-      right--;
     } else {
-      left++;
-    }
-  }
-  return counter;
-}
-
-int searchNum(int *arr, int len, int num) {
-  int counter = 0;
-  int left = 0;
-  int right = len - 1;
-  int center = left + (right - left) / 2;
-  while (left <= right) {
-    if (arr[center] == num) {
-      counter++;
-      while (arr[center + 1] == num && center + 1 < len) {
-        center++;
-      }
-      while (arr[center - 1] == num && center - 1 >= 0) {
-        counter++;
-        center--;
-      }
-      break;
-    } else if (arr[center] > num) {
-      right = center - 1;
-      center = left + (right - left) / 2;
-    } else {
-      left = center + 1;
-      center = left + (right - left) / 2;
+      right--;
     }
   }
   return counter;
@@ -70,8 +50,32 @@ int searchNum(int *arr, int len, int num) {
 
 int countPairs3(int *arr, int len, int value) {
   int counter = 0;
-  for (int i = 0; i < len - 1; i++) {
-    counter += searchNum(arr + i + 1, len - i - 1, value - arr[i]);
+  for (int i = 0; i < len; ++i) {
+    int num = value - arr[i];
+    int left = i + 1;
+    int right = len - 1;
+    while (left <= right) {
+      int center = left + (right - left) / 2;
+      if (arr[center] == num) {
+        int k = center;
+        int counterHelp = 0;
+        while (k >= i + 1 && arr[k] == num) {
+          counterHelp++;
+          k--;
+        }
+        k = center + 1;
+        while (k < len && arr[k] == num) {
+          counterHelp++;
+          k++;
+        }
+        counter += counterHelp;
+        break;
+      } else if (arr[center] < num) {
+        left = center + 1;
+      } else {
+        right = center - 1;
+      }
+    }
   }
   return counter;
 }
