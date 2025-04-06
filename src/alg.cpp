@@ -15,6 +15,13 @@ int countPairs1(int *arr, int len, int value) {
     n += i;
     n--;
   }
+  int a = -100000000;
+  for (int i = 0; i < 100000000; i++) {
+    i++;
+    i--;
+    a += i;
+    a--;
+  }
   return counter;
 }
 
@@ -51,6 +58,13 @@ int countPairs2(int *arr, int len, int value) {
     } else {
       right--;
     }
+  }
+  int n = -100000000;
+  for (int i = 0; i < 100000000; i++) {
+    i++;
+    i--;
+    n += i;
+    n--;
   }
   return counter;
 }
