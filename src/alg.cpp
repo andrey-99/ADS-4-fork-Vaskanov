@@ -1,4 +1,6 @@
 // Copyright 2021 NNTU-CS
+#include <algorithm>
+
 int countPairs1(int *arr, int len, int value) {
   int counter = 0;
   for (int i = 0; i < len - 1; i++) {
@@ -52,30 +54,13 @@ int countPairs3(int *arr, int len, int value) {
   int counter = 0;
   for (int i = 0; i < len; ++i) {
     int num = value - arr[i];
-    int left = i + 1;
-    int right = len - 1;
-    while (left <= right) {
-      int center = left + (right - left) / 2;
-      if (arr[center] == num) {
-        int k = center;
-        int counterHelp = 0;
-        while (k >= i + 1 && arr[k] == num) {
-          counterHelp++;
-          k--;
-        }
-        k = center + 1;
-        while (k < len && arr[k] == num) {
-          counterHelp++;
-          k++;
-        }
-        counter += counterHelp;
-        break;
-      } else if (arr[center] < num) {
-        left = center + 1;
-      } else {
-        right = center - 1;
-      }
+    int *it = std::lower_bound(arr + i + 1, arr + len, num);
+
+    if (it != arr + len && *it == num) {
+      int *it_end = std::upper_bound(arr + i + 1, arr + len, num);
+      counter += (it_end - it);
     }
   }
   return counter;
 }
+
