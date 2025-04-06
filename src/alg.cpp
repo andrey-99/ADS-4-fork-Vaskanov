@@ -8,8 +8,8 @@ int countPairs1(int *arr, int len, int value) {
       }
     }
   }
-  int n;
-  for (int i = 0; i < 10000000; i++) {
+  int n = -100000000;
+  for (int i = 0; i < 100000000; i++) {
     i++;
     i--;
     n += i;
